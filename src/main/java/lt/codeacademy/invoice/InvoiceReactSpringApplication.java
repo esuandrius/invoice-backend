@@ -10,7 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import lt.codeacademy.invoice.security.services.UserDetailsServiceImpl;
+import lt.codeacademy.invoice.services.RoleService;
+import lt.codeacademy.invoice.services.UserService;
+import lt.codeacademy.invoice.entities.ERole;
 import lt.codeacademy.invoice.entities.Role;
+import lt.codeacademy.invoice.entities.User;
+import lt.codeacademy.invoice.repositories.RoleRepository;
 
 
 @SpringBootApplication
@@ -21,15 +26,20 @@ public class InvoiceReactSpringApplication {
 	}
 	//
 //	@Bean //without this annotation it will not work
-//	CommandLineRunner run(UserDetailsServiceImpl userService) {
+//	CommandLineRunner run(RoleService roleService,UserService userService, RoleRepository roleRep	) {
+//		
 //		return args -> {
-//									
+//			
+//			
 //			//if data exists in db we have to quit 
-//			if(!userService.getRoles().isEmpty()) return;
+//			if(!roleService.getRoleList().isEmpty()) return;
 //			
 //			//adding first role to the system
-//			userService.save(new Role(null, USER));
-//			userService.save(new Role(null, ADMIN));
-//			userService.save(new Role(null, MODERATOR));
+//			roleService.addRole(new Role(null, ERole.ROLE_USER));
+//			roleService.addRole(new Role(null, ERole.ROLE_MODERATOR));
+//			roleService.addRole(new Role(null, ERole.ROLE_ADMIN));
+//			Role adminRole = roleRep.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//			userService.addUser(new User("Admin", "admin@admin.com", "123456", adminRole));
+//			
 //		};}
 }

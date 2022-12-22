@@ -87,7 +87,7 @@ public class ApiController {
 	}
 
 	@DeleteMapping("/customers/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public ResponseEntity<HttpStatus> deleteCustomerById(@PathVariable Long id) {
 		customerService.deleteCustomerById( id );
 		return new ResponseEntity<>( HttpStatus.NO_CONTENT );
@@ -181,8 +181,8 @@ public class ApiController {
 	@PreAuthorize("hasRole('ADMIN')")
 	public User updateUser(@RequestBody User user, @PathVariable Long id) {
 		//System.out.println(user.getRoles().toString() + "aaaaaaaaaaaaaaaaaa");
-		String pass=encoder.encode(user.getPassword());
-		user.setPassword(pass);
+//		String pass=encoder.encode(user.getPassword());
+//		user.setPassword(pass);
 	//	System.out.println(pass + "       cia passs");
 		return userService.updateUserById( id, user );
 	}
