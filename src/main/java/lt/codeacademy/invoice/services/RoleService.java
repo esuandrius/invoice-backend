@@ -2,14 +2,11 @@ package lt.codeacademy.invoice.services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lt.codeacademy.invoice.entities.Role;
-import lt.codeacademy.invoice.entities.User;
 import lt.codeacademy.invoice.repositories.RoleRepository;
-import lt.codeacademy.invoice.repositories.UserRepository;
+
 
 @Service
 public class RoleService {
@@ -18,7 +15,7 @@ public class RoleService {
 	
 	public List<Role> getRoleList() {
 		var list = roleRepository.findAll();
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 	}
 	
@@ -37,17 +34,6 @@ public class RoleService {
 		
 		return null;
 	}
-//	public Invoice addInvoice(Invoice invoice) {
-//		
-//		Customer cust = customerRepository.findById( invoice.getCustomerId().getId() ).get();
-//		
-//		invoice.setCustomerId(cust);
-//		
-//		Invoice inv = invoiceRepository.save(invoice );
-//		//System.out.println(inv);
-//		return inv;
-//		//	return invoiceRepository.save( invoice );
-//	}
 
 	public Role getRoleById(Long id) {
 		Optional<Role> role = roleRepository.findById( id );
@@ -60,9 +46,6 @@ public class RoleService {
 	}
 
 	public Role updateRoleById(Long id, Role role) {
-
-
-
 		return roleRepository.save( role );
 	}
 

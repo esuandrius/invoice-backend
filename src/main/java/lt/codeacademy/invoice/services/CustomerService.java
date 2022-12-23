@@ -34,17 +34,6 @@ public class CustomerService {
 	}
 
 	public Customer updateCustomerById(Long id, Customer customer) {
-//
-//		Customer customerById = customerRepository.findById( id ).get();
-//
-//		customerById.setAdresas( customer.getAdresas() );
-//		customerById.setEmail( customer.getEmail() );
-//		customerById.setKlientoStatusas( customer.getKlientoStatusas() );
-//		customerById.setPavarde( customer.getPavarde() );
-//		customerById.setTelNumeris( customer.getTelNumeris() );
-//		customerById.setTipas( customer.getTipas() );
-//		customerById.setVardas( customer.getVardas() );
-
 		return customerRepository.save( customer );
 	}
 

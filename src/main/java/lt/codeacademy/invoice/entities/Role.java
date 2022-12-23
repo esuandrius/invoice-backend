@@ -4,8 +4,16 @@ package lt.codeacademy.invoice.entities;
 
 import javax.persistence.*;
 
-@Entity
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 @Table(name = "roles")
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,30 +23,11 @@ public class Role {
   @Column(length = 20)
   private ERole name;
 
-  public Role() {
+//  public Role(Integer id, ERole name) {
+//	 this.id = id;
+//    this.name = name;
+//  }
 
-  }
-
-  public Role(Integer id, ERole name) {
-	 this.id = id;
-    this.name = name;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public ERole getName() {
-    return name;
-  }
-
-  public void setName(ERole name) {
-    this.name = name;
-  }
 }
 
 

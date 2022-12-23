@@ -2,11 +2,8 @@ package lt.codeacademy.invoice.services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import lt.codeacademy.invoice.entities.Invoice;
 import lt.codeacademy.invoice.entities.User;
 import lt.codeacademy.invoice.repositories.UserRepository;
 
@@ -37,17 +34,6 @@ public class UserService {
 		
 		return null;
 	}
-//	public Invoice addInvoice(Invoice invoice) {
-//		
-//		Customer cust = customerRepository.findById( invoice.getCustomerId().getId() ).get();
-//		
-//		invoice.setCustomerId(cust);
-//		
-//		Invoice inv = invoiceRepository.save(invoice );
-//		//System.out.println(inv);
-//		return inv;
-//		//	return invoiceRepository.save( invoice );
-//	}
 
 	public User getUserById(Long id) {
 		Optional<User> user = userRepository.findById( id );
@@ -60,9 +46,6 @@ public class UserService {
 	}
 
 	public User updateUserById(Long id, User user) {
-
-
-
 		return userRepository.save( user );
 	}
 

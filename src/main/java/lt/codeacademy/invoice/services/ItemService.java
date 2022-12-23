@@ -33,15 +33,6 @@ public class ItemService {
 	}
 
 	public Item updateItemById(Long id, Item item) {
-
-//		Item itemById = itemRepository.findById( id ).get();
-//
-//		itemById.setPavadinimas( item.getPavadinimas() );
-//		itemById.setKodas( item.getKodas() );
-//		itemById.setAprasymas( item.getAprasymas() );
-//		itemById.setGrupe( item.getGrupe() );
-//		itemById.setStatusas( item.getStatusas() );
-
 		return itemRepository.save( item );
 	}
 

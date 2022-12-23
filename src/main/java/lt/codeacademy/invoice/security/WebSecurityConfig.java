@@ -3,7 +3,6 @@ package lt.codeacademy.invoice.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -19,8 +18,6 @@ import lt.codeacademy.invoice.security.jwt.AuthEntryPointJwt;
 import lt.codeacademy.invoice.security.jwt.AuthTokenFilter;
 import lt.codeacademy.invoice.security.services.UserDetailsServiceImpl;
 
-//import static lt.codeacademy.invoice.utils.Utils.ADMIN;
-//import static lt.codeacademy.invoice.utils.Utils.USER;
 
 @Configuration
 @EnableGlobalMethodSecurity(
@@ -69,28 +66,14 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
-//  @Override
-//  protected void configure(HttpSecurity http) throws Exception {
-//    http.cors().and().csrf().disable()
-//      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-//      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-//      .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-//      .antMatchers("/api/test/**").permitAll()
-//      .anyRequest().authenticated();
-//
-//    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//  }
   
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
         .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-////        .antMatchers(HttpMethod.POST, "/api/orders").hasAnyAuthority(ADMIN, USER)
-////        .antMatchers(HttpMethod.GET, "/api/users/me").hasAnyAuthority(ADMIN, USER)
         .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-        .antMatchers("/api/test/**", "/api/**").permitAll()
+        .antMatchers("/api/test/**", "/api/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
         .anyRequest().authenticated();
     
     http.authenticationProvider(authenticationProvider());
@@ -99,21 +82,5 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     
     return http.build();
   }
-//  @Bean
-//  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//      http.authorizeRequests()
-//              //.antMatchers(HttpMethod.POST, "/api/v1/invoices").hasAuthority("ROLE_ADMIN")
-//              //.antMatchers(HttpMethod.GET, "/api/v1/invoices").permitAll()
-//              .antMatchers("/api/orders", "/api/orders/**").permitAll()
-//              .antMatchers("/api/users", "/api/users/**").permitAll()
-//              .antMatchers("/public/**", "/api/auth/**").permitAll()
-//              .antMatchers("/api/test/**", "/api/**", "/api/v1/**").permitAll()
-//              .antMatchers("/", "/error", "/csrf", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
-//              .anyRequest().authenticated();
-//     // http.addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-//     // http.exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
-//      http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//      http.cors().and().csrf().disable();
-//      return http.build();
-//  }
+
 }

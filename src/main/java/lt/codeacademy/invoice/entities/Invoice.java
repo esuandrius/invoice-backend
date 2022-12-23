@@ -40,7 +40,5 @@ public class Invoice {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<InvoiceItem> invoiceItems;
-//test
-	
 
 }
